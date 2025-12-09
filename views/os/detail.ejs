@@ -1,0 +1,40 @@
+<%- include("../includes/head.ejs") %>
+    </head>
+
+    <body>
+        <%- include("../includes/navigation.ejs") %>
+            <main class="centered">
+                <article class="card product-item">
+                    <header class="card__header">
+                        <h1 class="product__title">
+                            <%= os.modelo %>
+                                <%= os.marca %>
+                        </h1>
+                    </header>
+                    <div class="card__image">
+                        <img src="<%= os.imagem %>" alt="<%= os.modelo %>">
+                    </div>
+                    <div class="card__content">
+                        <h2 class="product__price">R$
+                            <%= os.precoOS %>
+                        </h2>
+                        <p class="product__description">
+                            <%= os.descricaoOS %>
+                        </p>
+                        <p>
+                            <%= os.cliente %>
+                        </p>
+                        <p>
+                            <%= os.placa %>
+                        </p>
+                    </div>
+                    <div class="card__actions">
+                        <a href="/admin/edit-os/<%= os.id %>?edit=true" class="btn">Editar OS</a>
+                        <form action="/admin/delete-os" method="post">
+                            <input type="hidden" name="id" value="<%= os.id %>" />
+                            <button class="btn" type="submit">Excluir OS</button>
+                        </form>
+                    </div>
+                </article>
+            </main>
+            <%- include("../includes/end.ejs") %>

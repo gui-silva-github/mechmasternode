@@ -1,4 +1,4 @@
-# 🛠️ MechMasterNode: Sistema de Ordens de Serviço (OS) para Mecânica de Carros (Node.js)
+# 🛠️ MechMasterNode
 
 <hr>
 

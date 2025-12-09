@@ -1,0 +1,67 @@
+<%- include("../includes/head.ejs") %>
+    <link rel="stylesheet" href="/css/forms.css">
+    <link rel="stylesheet" href="/css/os.css">
+</head>
+
+<body>
+    <%- include("../includes/navigation.ejs") %>
+
+    <main>
+        <form action="/admin/<% if (editing) { %>edit-os<% } else { %>add-os<% } %>" method="post" class="product-form">
+            <div class="alignAdd">
+                <div class="form-control">
+                    <label for="modelo">Modelo</label>
+                    <input required type="text" name="modelo" id="modelo" value="<% if (editing) { %><%=os.modelo%><% } %>">
+                </div>
+                <div class="form-control">
+                    <label for="marca">Marca</label>
+                    <input required type="text" name="marca" id="marca" value="<% if (editing) { %><%=os.marca%><% } %>">
+                </div>
+            </div>  
+            <div class="alignAdd">
+                <div class="form-control">
+                    <label for="cliente">Cliente</label>
+                    <input required type="text" name="cliente" id="cliente" value="<% if (editing) { %><%=os.cliente%><% } %>">
+                </div>
+                <div class="form-control">
+                    <label for="cpf">CPF</label>
+                    <input required type="text" name="cpf" id="cpf" value="<% if (editing) { %><%=os.cpf%><% } %>">
+                </div>
+            </div>
+            <div class="alignAdd">
+                <div class="form-control">
+                    <label for="placa">Placa</label>
+                    <input required type="text" name="placa" id="placa" value="<% if (editing) { %><%=os.placa%><% } %>">
+                </div>
+            </div>
+            <div class="form-control">
+                <label for="descricaoOS">Descrição</label>
+                <textarea required class="resize" name="descricaoOS" id="descricaoOS" rows="5"><% if (editing) { %><%=os.descricaoOS%><% } %></textarea>
+            </div>
+            <div class="form-control">
+                <label for="precoOS">Preço</label>
+                <input required type="number" name="precoOS" id="precoOS" step="0.01" value="<% if (editing) { %><%=os.precoOS%><% } %>">
+            </div>
+            <div class="form-control">
+                <label for="imagem">Imagem</label>
+                <select class="select" name="imagem" id="imagem">
+                    <option value="" <% if (!editing || !os.imagem) { %>selected<% } %>>Selecione uma imagem</option>
+                    <% if (typeof availableImages !== 'undefined') { %>
+                        <% availableImages.forEach(imgUrl => { %>
+                            <option 
+                                value="<%= imgUrl %>" 
+                                <% if (editing && os.imagem === imgUrl) { %>selected<% } %>
+                            >
+                                <%= imgUrl.split('/').pop() %> 
+                            </option>
+                        <% }) %>
+                    <% } %>
+                </select>
+            </div>
+            <input type="hidden" name="id" value="<%= editing ? os.id : '' %>">
+            <div class="alignAdd">
+                <button class="btn form-submit" type="submit"><% if (editing) { %>Editar OS<% } else { %>Adicionar OS<% } %></button>
+            </div>
+        </form>
+    </main>
+<%- include("../includes/end.ejs") %>
